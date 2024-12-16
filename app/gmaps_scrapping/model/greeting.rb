@@ -16,15 +16,15 @@ class GmapsScrapping
         @text = GREETINGS.first
         @keyword = "hotel di kota depok"
         @limit_scrolling = "100"
-        @maps = [
-          Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-          Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-          Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-          Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-          Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-          Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-
-        ]
+        @maps = [];
+        # @maps = [
+        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
+        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
+        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
+        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
+        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
+        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
+        # ]
       end
 
       def text_index=(new_text_index)

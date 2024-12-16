@@ -1,4 +1,5 @@
 require "gmaps_scrapping/model/greeting"
+require "gmaps_scrapping/controller/scrapping"
 
 class GmapsScrapping
   module View
@@ -16,6 +17,7 @@ class GmapsScrapping
       #
       before_body do
         @greeting = Model::Greeting.new
+        @controller = Controller::Scrapping.new
         menu_bar
       end
 
@@ -52,7 +54,18 @@ class GmapsScrapping
             button("Searching") {
               stretchy false
               on_clicked do
-                msg_box("searching di klik")
+                if @greeting.keyword.empty? || @greeting.limit_scrolling.empty? 
+                  msg_box_error('Validation Error!', 'All fields are required! Please make sure to enter a value for all fields.')
+                else
+                  convert_to_integer = @greeting.limit_scrolling.to_i
+                  if convert_to_integer > 100
+                    msg_box_error('limit maximum error !', 'Limit tidak bisa lebih dari 100')
+                  else
+                    scrapping_running(@greeting.keyword, @greeting.limit_scrolling) 
+                    msg_box('Finish', 'Scrapping telah selesai')
+                    read_json_result
+                  end
+                end              
               end
             }
             button("Download as Excell") {
@@ -63,10 +76,16 @@ class GmapsScrapping
             }
             search_box_layout
             table_layout
+         
           }
         }
       }
 
+      def scrapping_running(keyword, limit)
+        @controller.process_scrapping(keyword, limit)
+      end
+
+      
       def table_layout
         table {
           text_column("Name")
@@ -74,13 +93,41 @@ class GmapsScrapping
           text_column("Phone")
           text_column("Website")
           text_column("Link Maps")
-
-          cell_rows <=> [@greeting, :maps]
-          on_changed do |row, type, row_data|
-            puts "Row #{row} #{type}: #{row_data}"
-            $stdout.flush # for Windows
-          end
+          read_json_result 
         }
+      end
+
+      def read_json_result
+           # ISI FILE KE TABEL
+           # Direktori tempat file JSON berada
+            directory = "./" # Ubah sesuai dengan direktori target
+
+            # Cari semua file .json dalam direktori
+            json_files = Dir.glob(File.join(directory, "*.json"))
+
+            # Temukan file yang dimodifikasi paling akhir
+            latest_file = json_files.max_by { |file| File.mtime(file) }
+
+            if latest_file
+              
+              file_content = File.read(latest_file)
+              data = JSON.parse(file_content, symbolize_names: true)
+  
+              @greeting.maps = data.map do |location|
+                Model::Greeting::Maps.new(
+                  location[:nama_lokasi],
+                  location[:alamat],
+                  location[:no_telpon],
+                  location[:email],
+                  location[:link]
+                )
+              end
+            else 
+              @greeting.maps = [
+                Model::Greeting::Maps.new()
+              ]
+            end
+          cell_rows <=> [@greeting, :maps]
       end
 
       def search_box_layout
@@ -88,6 +135,8 @@ class GmapsScrapping
           stretchy false
         }
       end
+
+    
 
       def menu_bar
         menu("File") {
