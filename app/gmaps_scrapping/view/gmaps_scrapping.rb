@@ -76,7 +76,6 @@ class GmapsScrapping
             }
             search_box_layout
             table_layout
-         
           }
         }
       }
@@ -93,7 +92,7 @@ class GmapsScrapping
           text_column("Phone")
           text_column("Website")
           text_column("Link Maps")
-          read_json_result 
+          cell_rows <=> [@greeting, :maps]
         }
       end
 
@@ -127,7 +126,7 @@ class GmapsScrapping
                 Model::Greeting::Maps.new()
               ]
             end
-          cell_rows <=> [@greeting, :maps]
+          
       end
 
       def search_box_layout
