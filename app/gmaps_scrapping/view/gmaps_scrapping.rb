@@ -1,11 +1,46 @@
 require "gmaps_scrapping/model/greeting"
 require "gmaps_scrapping/controller/scrapping"
-
+require "gmaps_scrapping/controller/history"
 require 'rubygems'
 require 'write_xlsx'
 
+
 class GmapsScrapping
   module View
+
+    class LabelPair
+      include Glimmer::LibUI::CustomControl
+      
+      options :model, :attribute, :value
+      
+      body {
+        horizontal_box {
+          label(" #{attribute.to_s.underscore.split('_').map(&:capitalize).join(' ')}")
+
+          label(value.to_s) {
+            text <= [model, attribute]
+          }
+        }
+      }
+    end
+    
+    class AddressView
+      include Glimmer::LibUI::CustomControl
+      
+      options :history
+      
+      body {
+        vertical_box {
+          vertical_box(slot: :header) {
+            stretchy false
+          }
+          history.each_pair do |attribute, value|
+            label_pair(model: history, attribute: attribute, value: value)
+          end
+        }
+      }
+    end
+
     class GmapsScrapping
       include Glimmer::LibUI::Application
 
@@ -19,8 +54,10 @@ class GmapsScrapping
       #  to setup application menu
       #
       before_body do
+    
         @greeting = Model::Greeting.new
         @controller = Controller::Scrapping.new
+        @history = Controller::History.new
         menu_bar
         read_json_result
       end
@@ -114,6 +151,7 @@ class GmapsScrapping
         latest_file = json_files.max_by { |file| File.mtime(file) }
 
         if latest_file
+        
            file_content = File.read(latest_file)
            data = JSON.parse(file_content, symbolize_names: true)
             @greeting.maps = data.map do |location|
@@ -196,9 +234,43 @@ class GmapsScrapping
 
       def menu_bar
         menu("File") {
-          menu_item("Preferences...") {
+          menu_item("History") {
             on_clicked do
-              display_preferences_dialog
+
+
+              window('History Data Searching', 800, 300) {
+                 resizable false
+                margined true
+                
+                horizontal_box {
+                  vertical_box {
+                  for a in 1..5 do
+                      horizontal_separator {
+                        stretchy false
+                      }
+                      address_view(address: @greeting.history) {
+                        header {
+                          label(' Search : rumah makan padang di depok') {
+                            stretchy false
+                          }
+                          horizontal_separator {
+                            stretchy false
+                          }
+                        }
+                        button("Download") {
+                          stretchy false
+                          on_clicked do
+                            download_file_as_excell
+                          end
+                        }
+                      }
+                    end
+                 # }
+                
+                }
+                  
+                }
+              }.show
             end
           }
 
@@ -220,6 +292,8 @@ class GmapsScrapping
             end
           }
         }
+
+      
       end
 
       def display_about_dialog
@@ -251,5 +325,7 @@ class GmapsScrapping
         }.show
       end
     end
+
+
   end
 end

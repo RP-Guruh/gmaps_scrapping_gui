@@ -3,20 +3,25 @@ class GmapsScrapping
   module Model
     class Greeting
       Maps = Struct.new(:name, :address, :price, :rate_stars, :total_ulasan, :phone, :website, :link_maps)
-
+      HistoryList = Struct.new(:scrapping_date, :json_file)
+     
       GREETINGS = [
         "Hello, GUruh",
         "Howdy, Partner!",
       ]
 
+      attr_accessor :history
       attr_accessor :text
       attr_accessor :keyword, :limit_scrolling, :maps, :name, :address, :price, :rate_stars, :total_ulasan, :phone, :website, :link_maps
-
+      attr_accessor :scrapping_date, :json_file
       def initialize
         @text = GREETINGS.first
         @keyword = "hotel di kota depok"
         @limit_scrolling = "100"
         @maps = [];
+            
+        @history = HistoryList.new('123 Main St', '23923')
+
         # @maps = [
         #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
         #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
