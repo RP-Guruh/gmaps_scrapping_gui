@@ -1,0 +1,72 @@
+[
+  {
+    "nama_lokasi": "Rumah Makan Pondok Baru Citayam",
+    "rating": "4,4",
+    "jumlah_ulasan": "323",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Citayam, Jl. Raya Citayam No.63, RT.002/RW.011, Bojong Pd. Terong, Kec. Cipayung, Kota Depok, Jawa Barat 16444",
+    "email": "Email tidak tersedia",
+    "no_telpon": "0811-9299-943",
+    "link": "https://www.google.com/maps/place/Rumah+Makan+Pondok+Baru+Citayam/data=!4m7!3m6!1s0x2e69e9e8d6f2d1c7:0xb24a55ddd1235d01!8m2!3d-6.4507324!4d106.8007398!16s%2Fg%2F1q5bmrh4d!19sChIJx9Hy1ujpaS4RAV0j0d1VSrI?authuser=0&hl=id&rclk=1"
+  },
+  {
+    "nama_lokasi": "Rumah Makan Pondok Baru Ratu Jaya",
+    "rating": "4,5",
+    "jumlah_ulasan": "1.700",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Jl. Raya Citayam, Ratu Jaya, Kec. Cipayung, Kota Depok, Jawa Barat 16439",
+    "email": "Email tidak tersedia",
+    "no_telpon": "0812-8225-1995",
+    "link": "https://www.google.com/maps/place/Rumah+Makan+Pondok+Baru+Ratu+Jaya/data=!4m7!3m6!1s0x2e69e97daf0564df:0xfa8440ef600e53da!8m2!3d-6.4139169!4d106.8160072!16s%2Fg%2F1ptvqbprw!19sChIJ32QFr33paS4R2lMOYO9AhPo?authuser=0&hl=id&rclk=1"
+  },
+  {
+    "nama_lokasi": "RM Minang Saiyo",
+    "rating": "4,6",
+    "jumlah_ulasan": "65",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Jalan Pondok Terong, Jl. Bambon No.Rt 09/05, Bojong Pd. Terong, Kec. Cipayung, Kota Depok, Jawa Barat 16444",
+    "email": "Email tidak tersedia",
+    "no_telpon": "0823-8131-2542",
+    "link": "https://www.google.com/maps/place/RM+Minang+Saiyo/data=!4m7!3m6!1s0x2e69e99023fc989d:0x7e42723d8bb3e3b3!8m2!3d-6.4344202!4d106.8056263!16s%2Fg%2F11c5_msmc9!19sChIJnZj8I5DpaS4Rs-Oziz1yQn4?authuser=0&hl=id&rclk=1"
+  },
+  {
+    "nama_lokasi": "Salero Nusantara Pondok Terong",
+    "rating": "5,0",
+    "jumlah_ulasan": "3",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Jl. Raya Citayam No.10, Bojong Pd. Terong, Kec. Cipayung, Kota Depok, Jawa Barat 16436",
+    "email": "Email tidak tersedia",
+    "no_telpon": "0815-1391-8321",
+    "link": "https://www.google.com/maps/place/Salero+Nusantara+Pondok+Terong/data=!4m7!3m6!1s0x2e69e949d8e3ea09:0xac3867f840cf1c9a!8m2!3d-6.4505928!4d106.8012064!16s%2Fg%2F11v9_bkp42!19sChIJCerj2EnpaS4RmhzPQPhnOKw?authuser=0&hl=id&rclk=1"
+  },
+  {
+    "nama_lokasi": "Nasi Padang Minang Jaya",
+    "rating": "4,5",
+    "jumlah_ulasan": "50",
+    "harga": "Harga tidak tersedia",
+    "alamat": "HR44+JV6, Jl. Permata Raya Sektor Mutiara (Pas Bunderan), Pd. Jaya, Kec. Cipayung, Kota Depok, Jawa Barat 16443",
+    "email": "Email tidak tersedia",
+    "no_telpon": "0896-5693-8705",
+    "link": "https://www.google.com/maps/place/Nasi+Padang+Minang+Jaya/data=!4m7!3m6!1s0x2e69e9f2b6b54059:0x188b1fb656a92683!8m2!3d-6.443461!4d106.80715!16s%2Fg%2F11cn69h7wv!19sChIJWUC1tvLpaS4RgyapVrYfixg?authuser=0&hl=id&rclk=1"
+  },
+  {
+    "nama_lokasi": "Santano Cafe, Nasi Goreng Padang & Ayam Geprek Santano",
+    "rating": "4,9",
+    "jumlah_ulasan": "27",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Gg. Laskar No.94B, RT.015/RW.006, Bojong Pd. Terong, Kec. Cipayung, Kota Depok, Jawa Barat 16436",
+    "email": "Email tidak tersedia",
+    "no_telpon": "0812-7641-3970",
+    "link": "https://www.google.com/maps/place/Santano+Cafe,+Nasi+Goreng+Padang+%26+Ayam+Geprek+Santano/data=!4m7!3m6!1s0x2e69e9dcea67dcc5:0xe463e5adae7c6846!8m2!3d-6.442919!4d106.8046991!16s%2Fg%2F11rd3m40g_!19sChIJxdxn6tzpaS4RRmh8rq3lY-Q?authuser=0&hl=id&rclk=1"
+  },
+  {
+    "nama_lokasi": "Nasi Padang RM ZEHAN",
+    "rating": "4,7",
+    "jumlah_ulasan": "10",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Alamat tidak tersedia",
+    "email": "Email tidak tersedia",
+    "no_telpon": "No. Telp tidak tersedia",
+    "link": "https://www.google.com/maps/place/Nasi+Padang+RM+ZEHAN/data=!4m7!3m6!1s0x2e69e92fba588193:0x9c956ee38410d542!8m2!3d-6.4486825!4d106.8043385!16s%2Fg%2F11gsltzqxb!19sChIJk4FYui_paS4RQtUQhONulZw?authuser=0&hl=id&rclk=1"
+  }
+]

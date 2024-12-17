@@ -1,6 +1,9 @@
 require "gmaps_scrapping/model/greeting"
 require "gmaps_scrapping/controller/scrapping"
 
+require 'rubygems'
+require 'write_xlsx'
+
 class GmapsScrapping
   module View
     class GmapsScrapping
@@ -69,10 +72,10 @@ class GmapsScrapping
                 end              
               end
             }
-            button("Download as Excell") {
+            button("Download as Excell Latest Searching") {
               stretchy false
               on_clicked do
-                msg_box("download file")
+                download_file_as_excell
               end
             }
             search_box_layout
@@ -90,6 +93,9 @@ class GmapsScrapping
         table {
           text_column("Name")
           text_column("Address")
+          text_column("Price")
+          text_column("Rate Stars")
+          text_column("Total Ulasan")
           text_column("Phone")
           text_column("Website")
           text_column("Link Maps")
@@ -98,37 +104,87 @@ class GmapsScrapping
       end
 
       def read_json_result
-           # ISI FILE KE TABEL
-           # Direktori tempat file JSON berada
-            directory = "./" # Ubah sesuai dengan direktori target
+        # Direktori tempat file JSON berada
+        directory = "./" # Ubah sesuai dengan direktori target
 
-            # Cari semua file .json dalam direktori
-            json_files = Dir.glob(File.join(directory, "*.json"))
+        # Cari semua file .json dalam direktori
+        json_files = Dir.glob(File.join(directory, "*.json"))
 
-            # Temukan file yang dimodifikasi paling akhir
-            latest_file = json_files.max_by { |file| File.mtime(file) }
+        # Temukan file yang dimodifikasi paling akhir
+        latest_file = json_files.max_by { |file| File.mtime(file) }
 
-            if latest_file
-              
-              file_content = File.read(latest_file)
-              data = JSON.parse(file_content, symbolize_names: true)
-  
-              @greeting.maps = data.map do |location|
-                Model::Greeting::Maps.new(
-                  location[:nama_lokasi],
-                  location[:alamat],
-                  location[:no_telpon],
-                  location[:email],
-                  location[:link]
-                )
-              end
-            else 
-              @greeting.maps = [
-                Model::Greeting::Maps.new()
-              ]
+        if latest_file
+           file_content = File.read(latest_file)
+           data = JSON.parse(file_content, symbolize_names: true)
+            @greeting.maps = data.map do |location|
+              Model::Greeting::Maps.new(
+                location[:nama_lokasi],
+                location[:alamat],
+                location[:harga],
+                location[:rating],
+                location[:jumlah_ulasan],
+                location[:no_telpon],
+                location[:email],
+                location[:link]
+              )
             end
-          
+        else 
+          @greeting.maps = [
+            Model::Greeting::Maps.new()
+          ]
+        end
       end
+
+      def download_file_as_excell
+        directory = "./" # Ubah sesuai dengan direktori target
+
+        # Cari semua file .json dalam direktori
+        json_files = Dir.glob(File.join(directory, "*.json"))
+
+        # Temukan file yang dimodifikasi paling akhir
+        latest_file = json_files.max_by { |file| File.mtime(file) }
+
+        if latest_file
+          file_content = File.read(latest_file)
+          data = JSON.parse(file_content, symbolize_names: true)
+
+          current_time = Time.now
+          formatted_time = current_time.strftime('%d_%m_%Y_%H_%M')
+          title_excell = "results_#{formatted_time}.xlsx"
+          puts title_excell
+          # Create a new Excel workbook
+          workbook = WriteXLSX.new(title_excell)
+
+          # Add a worksheet
+          worksheet = workbook.add_worksheet
+
+          worksheet.write(0, 0, "Nama Lokasi")
+          worksheet.write(0, 1, "Alamat")
+          worksheet.write(0, 2, "Harga")
+          worksheet.write(0, 3, "Rating")
+          worksheet.write(0, 4, "Jumlah Ulasan")
+          worksheet.write(0, 5, "No Telpon")
+          worksheet.write(0, 6, "Website")
+          worksheet.write(0, 7, "Link")
+
+          data.each_with_index do |location, index|
+            worksheet.write(index + 1, 0, location[:nama_lokasi])
+            worksheet.write(index + 1, 1, location[:alamat])
+            worksheet.write(index + 1, 2, location[:harga])
+            worksheet.write(index + 1, 3, location[:rating])
+            worksheet.write(index + 1, 4, location[:jumlah_ulasan])
+            worksheet.write(index + 1, 5, location[:no_telpon])
+            worksheet.write(index + 1, 6, location[:website])
+            worksheet.write(index + 1, 7, location[:link])
+          end
+          
+          workbook.close
+          msg_box("Download success", "File berhasil terdownload")
+        else
+          msg_box_error("Error", "Tidak ditemuka file pencarian terakhir")
+        end
+      end
+
 
       def search_box_layout
         search_entry {

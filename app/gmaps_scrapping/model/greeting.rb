@@ -2,7 +2,7 @@
 class GmapsScrapping
   module Model
     class Greeting
-      Maps = Struct.new(:name, :address, :phone, :website, :link_maps)
+      Maps = Struct.new(:name, :address, :price, :rate_stars, :total_ulasan, :phone, :website, :link_maps)
 
       GREETINGS = [
         "Hello, GUruh",
@@ -10,7 +10,7 @@ class GmapsScrapping
       ]
 
       attr_accessor :text
-      attr_accessor :keyword, :limit_scrolling, :maps, :name, :address, :phone, :website, :link_maps
+      attr_accessor :keyword, :limit_scrolling, :maps, :name, :address, :price, :rate_stars, :total_ulasan, :phone, :website, :link_maps
 
       def initialize
         @text = GREETINGS.first

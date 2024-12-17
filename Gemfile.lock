@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (8.0.0.1)
+    activesupport (8.0.1)
       base64
       benchmark (>= 0.3)
       bigdecimal
@@ -116,7 +116,6 @@ GEM
     kamelcase (0.0.2)
       semver2 (~> 3)
     libui (0.1.2)
-    libui (0.1.2-x64-mingw)
     logger (1.6.3)
     matrix (0.4.2)
     method_source (1.1.0)
@@ -127,8 +126,6 @@ GEM
       bigdecimal (~> 3.1)
     multipart-post (2.4.1)
     nkf (0.2.0)
-    nokogiri (1.17.2-x64-mingw-ucrt)
-      racc (~> 1.4)
     nokogiri (1.17.2-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.11)
@@ -156,7 +153,7 @@ GEM
     rake-tui (0.2.3)
       tty-prompt
     rchardet (1.8.0)
-    rdoc (6.8.1)
+    rdoc (6.9.0)
       psych (>= 4.0.0)
     reline (0.5.12)
       io-console (~> 0.5)
@@ -177,7 +174,7 @@ GEM
     rspec-support (3.5.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    securerandom (0.4.0)
+    securerandom (0.4.1)
     selenium-webdriver (4.27.0)
       base64 (~> 0.2)
       logger (~> 1.4)
@@ -216,7 +213,6 @@ GEM
       rubyzip (>= 1.0.0)
 
 PLATFORMS
-  x64-mingw-ucrt
   x86_64-linux
 
 DEPENDENCIES
