@@ -1,13 +1,11 @@
 require "gmaps_scrapping/model/greeting"
 require "gmaps_scrapping/controller/scrapping"
-require "gmaps_scrapping/controller/history"
 require 'rubygems'
 require 'write_xlsx'
 
 
 class GmapsScrapping
   module View
-
     class LabelPair
       include Glimmer::LibUI::CustomControl
       
@@ -15,31 +13,60 @@ class GmapsScrapping
       
       body {
         horizontal_box {
-          label(" #{attribute.to_s.underscore.split('_').map(&:capitalize).join(' ')}")
-
+          label("     #{attribute.to_s.underscore.split('_').map(&:capitalize).join(' ')}")
           label(value.to_s) {
             text <= [model, attribute]
           }
+         
         }
       }
     end
     
     class AddressView
       include Glimmer::LibUI::CustomControl
-      
+    
       options :history
       
       body {
+        
         vertical_box {
-          vertical_box(slot: :header) {
+          label("     Riwayat scrapping data")
+          horizontal_separator {
             stretchy false
           }
-          history.each_pair do |attribute, value|
-            label_pair(model: history, attribute: attribute, value: value)
+          # Iterasi setiap item di dalam history
+          history.each do |item|
+            # Jika item adalah Struct atau Hash
+            if item.respond_to?(:each_pair)
+              item.each_pair do |attribute, value|
+              
+                label_pair(model: item, attribute: attribute, value: value)
+             
+              end
+            else
+              # Jika item adalah object biasa, gunakan instance_variables
+              item.instance_variables.each do |var|
+                attribute = var.to_s.delete('@')
+                value = item.instance_variable_get(var)
+                label_pair(model: item, attribute: attribute, value: value)
+              end
+            end
+            button("Download") {
+              stretchy false
+              on_clicked do
+                file_name = item[:file_name] || item.file_name
+                msg_box("Keyword: #{file_name}")
+              end
+            }
+            horizontal_separator {
+              stretchy false
+            }
           end
+          
         }
       }
     end
+    
 
     class GmapsScrapping
       include Glimmer::LibUI::Application
@@ -57,7 +84,6 @@ class GmapsScrapping
     
         @greeting = Model::Greeting.new
         @controller = Controller::Scrapping.new
-        @history = Controller::History.new
         menu_bar
         read_json_result
       end
@@ -120,6 +146,10 @@ class GmapsScrapping
           }
         }
       }
+
+      def read_history
+        puts "test"
+      end
 
       def scrapping_running(keyword, limit)
         @controller.process_scrapping(keyword, limit)
@@ -243,28 +273,15 @@ class GmapsScrapping
                 margined true
                 
                 horizontal_box {
+              
                   vertical_box {
-                  for a in 1..5 do
+                  #for a in 1..5 do
+                     
                       horizontal_separator {
                         stretchy false
                       }
-                      address_view(address: @greeting.history) {
-                        header {
-                          label(' Search : rumah makan padang di depok') {
-                            stretchy false
-                          }
-                          horizontal_separator {
-                            stretchy false
-                          }
-                        }
-                        button("Download") {
-                          stretchy false
-                          on_clicked do
-                            download_file_as_excell
-                          end
-                        }
-                      }
-                    end
+                      address_view(history: @greeting.histories) 
+                   # end
                  # }
                 
                 }

@@ -3,14 +3,14 @@ class GmapsScrapping
   module Model
     class Greeting
       Maps = Struct.new(:name, :address, :price, :rate_stars, :total_ulasan, :phone, :website, :link_maps)
-      HistoryList = Struct.new(:scrapping_date, :json_file)
+      Histories = Struct.new(:scrapping_date, :json_file)
      
       GREETINGS = [
         "Hello, GUruh",
         "Howdy, Partner!",
       ]
 
-      attr_accessor :history
+      attr_accessor :histories
       attr_accessor :text
       attr_accessor :keyword, :limit_scrolling, :maps, :name, :address, :price, :rate_stars, :total_ulasan, :phone, :website, :link_maps
       attr_accessor :scrapping_date, :json_file
@@ -19,21 +19,38 @@ class GmapsScrapping
         @keyword = "hotel di kota depok"
         @limit_scrolling = "100"
         @maps = [];
-            
-        @history = HistoryList.new('123 Main St', '23923')
+        get_history
 
-        # @maps = [
-        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-        #   Maps.new("Hotel Bidakara", "Jl. Lap. Banteng Selatan No.1, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710", "720-523-4329", "borobudur.com", "https://www.rubydoc.info/search/gems/glimmer/0.9.2?q=label"),
-        # ]
+
+        #@histories = Histories.new('123 Main St', '23923')
+        
       end
 
       def text_index=(new_text_index)
         self.text = GREETINGS[new_text_index]
+      end
+
+      def get_history
+        directory = "./"
+        file_content = Dir.glob("#{directory}**/riwayat_pencarian.json").first
+        
+        # Check if the file exists
+        if file_content
+          file_data = File.read(file_content)
+          data = JSON.parse(file_data, symbolize_names: true)
+          # Assign the data to @greeting.history
+          @histories = data.map do |item|
+            {
+              keyword: item[:keyword],
+              date: item[:date],
+              file_name: item[:file_name]
+            }
+          end
+        
+          
+        else
+          @histories = [] # If file is not found, set an empty array
+        end
       end
 
       def text_index
