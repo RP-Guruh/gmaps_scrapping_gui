@@ -19,6 +19,7 @@ class GmapsScrapping
         @greeting = Model::Greeting.new
         @controller = Controller::Scrapping.new
         menu_bar
+        read_json_result
       end
 
       ## Use after_body block to setup observers for controls in body
