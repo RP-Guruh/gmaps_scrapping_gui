@@ -1,0 +1,72 @@
+[
+  {
+    "nama_lokasi": "Elementary School Cipayung",
+    "rating": "4.4",
+    "jumlah_ulasan": "24",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Address: HQ2W+XPP, Jl. Gg. Cendana Jl. Pemuda Kp. Pulo, Cipayung Jaya, Kec. Cipayung, Kota Depok, Jawa Barat 16437",
+    "email": "Email tidak tersedia",
+    "no_telpon": "Phone: 0895-2810-1231",
+    "link": "https://www.google.com/maps/place/Elementary+School+Cipayung/data=!4m7!3m6!1s0x2e69ebbea7f6c99d:0x786b799b983db61!8m2!3d-6.4050677!4d106.8473838!16s%2Fg%2F1w2z0r97!19sChIJncn2p77raS4RYduDuZm3hgc?authuser=0&hl=en&rclk=1"
+  },
+  {
+    "nama_lokasi": "Sekolah Dasar Negeri Cipayung 2",
+    "rating": "4.3",
+    "jumlah_ulasan": "36",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Address: Jl. Raya Cipayung No.1, Cipayung, Kec. Cipayung, Kota Depok, Jawa Barat 16437",
+    "email": "Email tidak tersedia",
+    "no_telpon": "Phone: 0812-1870-4275",
+    "link": "https://www.google.com/maps/place/Sekolah+Dasar+Negeri+Cipayung+2/data=!4m7!3m6!1s0x2e69e997acf83d5b:0xe7e69ba4fae0b25d!8m2!3d-6.4356403!4d106.7966516!16s%2Fg%2F1hm52pct0!19sChIJWz34rJfpaS4RXbLg-qSb5uc?authuser=0&hl=en&rclk=1"
+  },
+  {
+    "nama_lokasi": "SD Negeri Cipayung 3",
+    "rating": "4.6",
+    "jumlah_ulasan": "17",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Alamat tidak tersedia",
+    "email": "Email tidak tersedia",
+    "no_telpon": "No. Telp tidak tersedia",
+    "link": "https://www.google.com/maps/place/SD+Negeri+Cipayung+3/data=!4m7!3m6!1s0x2e69e9a074d98767:0x5b9c7316db0c35e7!8m2!3d-6.4231725!4d106.7929115!16s%2Fg%2F1hm553609!19sChIJZ4fZdKDpaS4R5zUM2xZznFs?authuser=0&hl=en&rclk=1"
+  },
+  {
+    "nama_lokasi": "Pondok Terong 2 Elementary School",
+    "rating": "4.6",
+    "jumlah_ulasan": "21",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Alamat tidak tersedia",
+    "email": "Email tidak tersedia",
+    "no_telpon": "No. Telp tidak tersedia",
+    "link": "https://www.google.com/maps/place/Pondok+Terong+2+Elementary+School/data=!4m7!3m6!1s0x2e69e9f22aec12c1:0xf3efe5f9df0b0bfc!8m2!3d-6.4477864!4d106.8089741!16s%2Fg%2F1hm64k1k0!19sChIJwRLsKvLpaS4R_AsL3_nl7_M?authuser=0&hl=en&rclk=1"
+  },
+  {
+    "nama_lokasi": "SDN Cipayung 4 Kota Depok",
+    "rating": "4.3",
+    "jumlah_ulasan": "23",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Alamat tidak tersedia",
+    "email": "Email tidak tersedia",
+    "no_telpon": "No. Telp tidak tersedia",
+    "link": "https://www.google.com/maps/place/SDN+Cipayung+4+Kota+Depok/data=!4m7!3m6!1s0x2e69e9ea3419f8e9:0xb2107c93bff29705!8m2!3d-6.4475374!4d106.7968153!16s%2Fg%2F11f0kvldj3!19sChIJ6fgZNOrpaS4RBZfyv5N8ELI?authuser=0&hl=en&rclk=1"
+  },
+  {
+    "nama_lokasi": "SD Islam Al-Muhtadin",
+    "rating": "5.0",
+    "jumlah_ulasan": "14",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Alamat tidak tersedia",
+    "email": "Email tidak tersedia",
+    "no_telpon": "No. Telp tidak tersedia",
+    "link": "https://www.google.com/maps/place/SD+Islam+Al-Muhtadin/data=!4m7!3m6!1s0x2e69e963b9c7fdab:0x3128973ba686b5f1!8m2!3d-6.4234934!4d106.7978815!16s%2Fg%2F11f5ttr6mm!19sChIJq_3HuWPpaS4R8bWGpjuXKDE?authuser=0&hl=en&rclk=1"
+  },
+  {
+    "nama_lokasi": "Sekolah Dasar Islam Terpadu An-Najah Cipayung",
+    "rating": "4.7",
+    "jumlah_ulasan": "43",
+    "harga": "Harga tidak tersedia",
+    "alamat": "Alamat tidak tersedia",
+    "email": "Email tidak tersedia",
+    "no_telpon": "No. Telp tidak tersedia",
+    "link": "https://www.google.com/maps/place/Sekolah+Dasar+Islam+Terpadu+An-Najah+Cipayung/data=!4m7!3m6!1s0x2e69e9737aca47e5:0xfa8e5ef51540fea6!8m2!3d-6.4169913!4d106.7964548!16s%2Fg%2F11b8d35pv2!19sChIJ5UfKenPpaS4Rpv5AFfVejvo?authuser=0&hl=en&rclk=1"
+  }
+]

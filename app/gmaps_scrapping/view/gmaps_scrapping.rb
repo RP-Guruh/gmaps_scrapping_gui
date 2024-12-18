@@ -55,7 +55,7 @@ class GmapsScrapping
               stretchy false
               on_clicked do
                 file_name = item[:file_name] || item.file_name
-                msg_box("Keyword: #{file_name}")
+                GmapsScrapping.download_in_history(file_name)
               end
             }
             horizontal_separator {
@@ -147,10 +147,6 @@ class GmapsScrapping
         }
       }
 
-      def read_history
-        puts "test"
-      end
-
       def scrapping_running(keyword, limit)
         @controller.process_scrapping(keyword, limit)
       end
@@ -175,11 +171,11 @@ class GmapsScrapping
         directory = "./" # Ubah sesuai dengan direktori target
 
         # Cari semua file .json dalam direktori
-        json_files = Dir.glob(File.join(directory, "*.json"))
+        json_files = Dir.glob(File.join(directory, "result_*.json"))
 
         # Temukan file yang dimodifikasi paling akhir
         latest_file = json_files.max_by { |file| File.mtime(file) }
-
+        
         if latest_file
         
            file_content = File.read(latest_file)
@@ -219,7 +215,6 @@ class GmapsScrapping
           current_time = Time.now
           formatted_time = current_time.strftime('%d_%m_%Y_%H_%M')
           title_excell = "results_#{formatted_time}.xlsx"
-          puts title_excell
           # Create a new Excel workbook
           workbook = WriteXLSX.new(title_excell)
 
@@ -253,14 +248,11 @@ class GmapsScrapping
         end
       end
 
-
       def search_box_layout
         search_entry {
           stretchy false
         }
       end
-
-    
 
       def menu_bar
         menu("File") {
@@ -311,6 +303,58 @@ class GmapsScrapping
         }
 
       
+      end
+
+      def self.download_in_history(file_name)
+        
+        begin
+          # Membuka file dan membaca kontennya
+          File.open(file_name) do |file|
+            # Parsing JSON dengan simbol untuk key
+            data = JSON.parse(file.read, symbolize_names: true)
+            
+            current_time = Time.now
+            formatted_time = current_time.strftime('%d_%m_%Y_%H_%M')
+            title_excell = "results_#{formatted_time}.xlsx"
+
+            # Create a new Excel workbook
+            workbook = WriteXLSX.new(title_excell)
+
+            # Add a worksheet
+            worksheet = workbook.add_worksheet
+            
+            worksheet.write(0, 0, "Nama Lokasi")
+            worksheet.write(0, 1, "Alamat")
+            worksheet.write(0, 2, "Harga")
+            worksheet.write(0, 3, "Rating")
+            worksheet.write(0, 4, "Jumlah Ulasan")
+            worksheet.write(0, 5, "No Telpon")
+            worksheet.write(0, 6, "Website")
+            worksheet.write(0, 7, "Link")
+
+            data.each_with_index do |location, index|
+              worksheet.write(index + 1, 0, location[:nama_lokasi])
+              worksheet.write(index + 1, 1, location[:alamat])
+              worksheet.write(index + 1, 2, location[:harga])
+              worksheet.write(index + 1, 3, location[:rating])
+              worksheet.write(index + 1, 4, location[:jumlah_ulasan])
+              worksheet.write(index + 1, 5, location[:no_telpon])
+              worksheet.write(index + 1, 6, location[:website])
+              worksheet.write(index + 1, 7, location[:link])
+            end
+            
+            workbook.close
+            msg_box("Download success", "File berhasil terdownload")
+            
+          end
+        rescue Errno::ENOENT
+          # Menangani error jika file tidak ditemukan
+          msg_box_error("Error", "Error: File '#{file_name}' tidak ditemukan di direktori saat ini: #{Dir.pwd}") 
+        rescue JSON::ParserError
+          # Menangani error jika file bukan JSON valid
+          msg_box_error("Error", "Error: File '#{file_name}' bukan file JSON yang valid.") 
+        end
+
       end
 
       def display_about_dialog

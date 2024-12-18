@@ -9,14 +9,14 @@ class GmapsScrapping
             require "rubygems"
             require 'json'
            # include Glimmer::LibUI::Application
-
+            $formatted_time = 0;
             def initialize
                 @greeting = Model::Greeting.new
             end
 
-
             def process_scrapping(keyword, limit)
-                
+                current_time = Time.now
+                $formatted_time = current_time.strftime('%d/%m/%Y %H_%M')
                 # instance driver selenium
                 driver = Selenium::WebDriver.for :chrome
 
@@ -174,8 +174,6 @@ class GmapsScrapping
                     end
                 end
 
-                puts "Hasil scrapping:"
-
                 aria_labels.each_with_index do |label, index|
                     rating = ratings[index] || "Rating tidak tersedia"
                     ulasan = jumlah_ulasan[index] || "Jumlah ulasan tidak tersedia"
@@ -196,11 +194,10 @@ class GmapsScrapping
                         link: link
                     }
 
-                  #  puts "Nama lokasi: #{label}, Rating: #{rating}, Jumlah ulasan: #{ulasan}, Harga: #{harga}, Alamat: #{alamat}, Email: #{email}, No. Telp: #{no_telpon}, Link: #{link}"
-                   # puts "\n"
                   end
                   
                   results_to_json(results, keyword)
+                 
 
                   # Menutup browser setelah selesai
                   driver.quit
@@ -214,7 +211,40 @@ class GmapsScrapping
                 File.open(title_file_json, 'w') do |file|
                   file.write(JSON.pretty_generate(results))
                 end
+                result_to_history(keyword, $formatted_time, title_file_json)
             end
+
+            def result_to_history(keyword, date, file_name)
+              file_path = "riwayat_pencarian.json"
+              
+              # Jika file sudah ada, baca konten sebelumnya
+              if File.exist?(file_path)
+                begin
+                  # Baca file dan parse JSON
+                  file = File.read(file_path)
+                  data = JSON.parse(file, symbolize_names: true)
+            
+                  # Tambahkan entri baru ke data
+                  new_entry = { keyword: keyword, date: date, file_name: file_name }
+                  data << new_entry
+            
+                  # Tulis kembali data ke file
+                  File.open(file_path, 'w') do |f|
+                    f.write(JSON.pretty_generate(data))
+                  end
+                rescue JSON::ParserError => e
+                  puts "Error parsing JSON: #{e.message}"
+                end
+              else
+                # Jika file belum ada, buat file baru dan tambahkan data
+                new_entry = [{ keyword: keyword, date: date, file_name: file_name }]
+                File.open(file_path, 'w') do |f|
+                  f.write(JSON.pretty_generate(new_entry))
+                end
+              end
+            end
+            
+
         end
     end
 end
